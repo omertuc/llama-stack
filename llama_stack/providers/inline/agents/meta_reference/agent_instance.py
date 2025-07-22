@@ -9,7 +9,7 @@ import json
 import re
 import secrets
 import string
-import uuid
+import uuid_utils as uuid
 from collections.abc import AsyncGenerator
 from datetime import UTC, datetime
 
@@ -180,7 +180,7 @@ class ChatAgent(ShieldRunnerMixin):
             span.set_attribute("session_id", request.session_id)
             span.set_attribute("agent_id", self.agent_id)
             span.set_attribute("request", request.model_dump_json())
-            turn_id = str(uuid.uuid4())
+            turn_id = str(uuid.uuid7())
             span.set_attribute("turn_id", turn_id)
             if self.agent_config.name:
                 span.set_attribute("agent_name", self.agent_config.name)
